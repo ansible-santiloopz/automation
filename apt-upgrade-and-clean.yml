@@ -1,0 +1,27 @@
+- hosts: localhost
+
+  tasks:
+  - name: make sure required packages are installed
+    apt:
+      name: "{{ packages }}"
+      state: latest
+    vars:
+      packages:
+      - python-apt
+      - python3-apt
+      - aptitude
+  - name: update APT package cache
+    apt:
+      update_cache: yes
+  - name: apply dist-upgrade apt packages
+    apt:
+      upgrade: dist
+  - name: autoremove not needed apt packages
+    apt:
+      autoremove: yes
+  - name: clean apt packages
+    apt:
+      autoclean: yes
+  - name: purging apt packages
+    apt:
+      purge: yes
