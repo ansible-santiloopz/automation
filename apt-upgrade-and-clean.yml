@@ -1,16 +1,12 @@
 - hosts: localhost
-
+  vars_files:
+    - vars/variables.yml
   tasks:
   - name: make sure required packages are installed
     become: yes
     apt:
       name: "{{ packages }}"
       state: latest
-    vars:
-      packages:
-        - python-apt
-        - python3-apt
-        - aptitude
 
   - name: Update and upgrade apt packages
     become: yes

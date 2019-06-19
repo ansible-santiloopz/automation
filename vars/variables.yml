@@ -1,0 +1,4 @@
+packages:
+  - python-apt
+  - python3-apt
+  - aptitude
