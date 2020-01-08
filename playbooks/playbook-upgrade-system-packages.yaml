@@ -39,3 +39,9 @@
         update_cache: yes
         autoremove: yes
       when: ansible_os_family == "RedHat"
+    -
+      name: Update packages using yum
+      yum:
+        update_cache: yes
+        autoremove: yes
+      when: ansible_os_family == "SUSE"
