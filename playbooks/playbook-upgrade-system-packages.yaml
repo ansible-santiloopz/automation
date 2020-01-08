@@ -1,0 +1,41 @@
+---
+- 
+  hosts: localhost
+  name: 'Update Debian based distro'
+  vars_files:
+    -
+      ../vars/pck_managers_deps.yaml
+  tasks:
+    # Debian based distros
+    - 
+      name: make sure required packages are installed
+      become: yes
+      apt:
+        name: "{{ packagesApt }}"
+        state: latest
+      when: ansible_os_family == "Debian"
+    - 
+      name: Update and upgrade apt packages
+      become: yes
+      apt:
+        update_cache: yes
+        upgrade: dist
+        autoclean: yes
+        autoremove: yes
+        purge: yes
+        cache_valid_time: 86400 #One day
+      when: ansible_os_family == "Debian"
+    # RedHat based distros
+    - 
+      name: make sure required packages are installed
+      become: yes
+      dnf:
+        name: "{{ packagesDnf }}"
+        state: latest
+      when: ansible_os_family == "RedHat"
+    -
+      name: Update packages using dnf
+      dnf:
+        update_cache: yes
+        autoremove: yes
+      when: ansible_os_family == "RedHat"

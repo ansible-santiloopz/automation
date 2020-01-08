@@ -1,0 +1,8 @@
+packagesApt:
+  - python-apt
+  - python3-apt
+  - aptitude
+
+packagesDnf:
+  - python
+  - python-dnf
