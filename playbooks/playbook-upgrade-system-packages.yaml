@@ -8,14 +8,14 @@
   tasks:
     # Debian based distros
     - 
-      name: [DEBIAN] make sure required packages are installed
+      name: '[DEBIAN] make sure required packages are installed'
       become: yes
       apt:
         name: "{{ packagesApt }}"
         state: latest
       when: ansible_os_family == "Debian"
     - 
-      name: [DEBIAN] Update and upgrade apt packages
+      name: '[DEBIAN] Update and upgrade apt packages'
       become: yes
       apt:
         update_cache: yes
@@ -27,20 +27,20 @@
       when: ansible_os_family == "Debian"
     # RedHat based distros
     - 
-      name: [RH] make sure required packages are installed
+      name: '[RH] make sure required packages are installed'
       become: yes
       dnf:
         name: "{{ packagesDnf }}"
         state: latest
       when: ansible_os_family == "RedHat"
     -
-      name: [RH] Update packages using dnf
+      name: '[RH] Update packages using dnf'
       dnf:
         update_cache: yes
         autoremove: yes
       when: ansible_os_family == "RedHat"
     -
-      name: [SUSE] Update packages using yum
+      name: '[SUSE] Update packages using yum'
       yum:
         update_cache: yes
         autoremove: yes
